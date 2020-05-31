@@ -14,20 +14,19 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api")
 public class AppController {
 
-    @Autowired
-    EventService eventService;
+  @Autowired
+  EventService eventService;
 
-    @RequestMapping(path = "/event", method = RequestMethod.POST)
-    public @ResponseBody
-    GenericResponse triggerEvent(@RequestParam("name") String eventName) {
-        try {
-            return eventService.triggerEvent(eventName);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            GenericResponse response = new GenericResponse();
-            response.setMessage("Unexpected Error Occurred");
-            return response;
-        }
+  @PostMapping(path = "/event")
+  public GenericResponse triggerEvent(@RequestParam("name") String eventName) {
+    try {
+      return eventService.triggerEvent(eventName);
+    } catch (Exception ex) {
+      ex.printStackTrace();
+      GenericResponse response = new GenericResponse();
+      response.setMessage("Unexpected Error Occurred");
+      return response;
     }
+  }
 
 }

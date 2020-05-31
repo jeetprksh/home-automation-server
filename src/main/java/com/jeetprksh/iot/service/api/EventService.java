@@ -14,19 +14,20 @@ import java.util.Arrays;
 @Component
 public class EventService {
 
-    @Autowired EventPublisher eventPublisher;
-    private final String[] validEvents = {"lights-off", "lights-on"};
+  @Autowired
+  EventPublisher eventPublisher;
 
-    public GenericResponse triggerEvent(String eventName) throws Exception {
-        GenericResponse response = new GenericResponse();
-        if (Arrays.asList(validEvents).contains(eventName)) {
-            eventPublisher.publishEvent(eventName);
-            response.setStatus(true);
-            return response;
-        } else {
-            response.setMessage("Invalid event name.");
-            return response;
-        }
+  private final String[] validEvents = {"lights-off", "lights-on"};
+
+  public GenericResponse triggerEvent(String eventName) throws Exception {
+    GenericResponse response = new GenericResponse();
+    if (Arrays.asList(validEvents).contains(eventName)) {
+      eventPublisher.publishEvent(eventName);
+      response.setStatus(true);
+    } else {
+      response.setMessage("Invalid event name.");
     }
+    return response;
+  }
 
 }

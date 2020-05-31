@@ -11,21 +11,24 @@ import org.springframework.stereotype.Component;
 @Component
 public class EventPublisher {
 
-    private MqttClient client;
+  private MqttClient client;
 
-    public MqttClient getPublisher() throws Exception {
-        if (client != null) {
-            return client;
-        } else {
-            client = new MqttClient("tcp://localhost:1883", MqttClient.generateClientId());
-            client.connect();
-            return client;
-        }
+  private MqttClient getBrokerClient() throws Exception {
+    if (client == null) {
+      client = new MqttClient("tcp://localhost:1883", MqttClient.generateClientId());
+      client.connect();
     }
+    return client;
+  }
 
-    public void publishEvent(String message) throws Exception {
-        MqttMessage mqttMessage = new MqttMessage();
-        mqttMessage.setPayload(message.getBytes());
-        this.getPublisher().publish("iot_data", mqttMessage);
+  public void publishEvent(String message) throws Exception {
+    MqttClient client = this.getBrokerClient();
+    if (client.isConnected()) {
+      MqttMessage mqttMessage = new MqttMessage();
+      mqttMessage.setPayload(message.getBytes());
+      this.getBrokerClient().publish("iot_data", mqttMessage);
+    } else {
+      throw new Exception("Not Connected to Broker");
     }
+  }
 }

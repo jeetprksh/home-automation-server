@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class LightAutomationRestApplication {
+public class HomeAutomationServer {
 
   public static void main(String[] args) {
-    SpringApplication.run(LightAutomationRestApplication.class, args);
+    SpringApplication.run(HomeAutomationServer.class, args);
   }
 
 }

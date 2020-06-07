@@ -4,6 +4,8 @@ import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.springframework.stereotype.Component;
 
+import java.util.Objects;
+
 /**
  * Created by Jeet Prakash on 2017-10-14.
  */
@@ -14,7 +16,7 @@ public class EventPublisher {
   private MqttClient client;
 
   private MqttClient getBrokerClient() throws Exception {
-    if (client == null) {
+    if (Objects.isNull(client)) {
       client = new MqttClient("tcp://localhost:1883", MqttClient.generateClientId());
       client.connect();
     }

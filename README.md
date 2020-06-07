@@ -1,1 +1,1 @@
-# light-automation-rest
+# home-automation-server

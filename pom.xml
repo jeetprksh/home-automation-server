@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.jeetprksh.iot</groupId>
-	<artifactId>light-automation-rest</artifactId>
+	<artifactId>home-automation-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>light-automation-rest</name>
-	<description>Restful Services to support Light Automation IOT Project</description>
+	<name>home-automation-server</name>
+	<description>Restful Services to support Home Automation IoT Project</description>
 
 	<properties>
 		<java.version>1.8</java.version>
